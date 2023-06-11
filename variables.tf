@@ -14,12 +14,6 @@ variable "subnet_cidr_ranges" {
   }
 }
 
-variable "route-gateway-IGW" {
-  default = {
-    cidr-block = "0.0.0.0/0"
-  }
-}
-
 variable "instance_data" {
   default = {
     name-prefix   = "DevOps"
