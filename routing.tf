@@ -2,7 +2,7 @@
 resource "aws_route_table" "terraform-route-gateway" {
   vpc_id = aws_vpc.aws-vpc.id
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block = var.route-gateway-IGW
     gateway_id = aws_internet_gateway.internet-gateway.id
   }
 }
@@ -25,12 +25,12 @@ resource "aws_route_table" "route-nat" {
 resource "aws_route_table" "route-nat2" {
   vpc_id = aws_vpc.aws-vpc.id
   route {
-    cidr_block     = "0.0.0.0/0"
+    cidr_block     = var.route-gateway-IGW
     nat_gateway_id = aws_nat_gateway.nat-gateway2.id
   }
 }
 
-# Assosiate Routing Tables ----------------------------------------------------
+# Associate Routing Tables
 resource "aws_route_table_association" "terraform-associate1" {
   subnet_id      = aws_subnet.terraform-sub1-pub.id
   route_table_id = aws_route_table.terraform-route-gateway.id

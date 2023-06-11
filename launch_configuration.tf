@@ -1,4 +1,4 @@
-# Create a Launch Configuration -----------------------------------------------
+# Create a Launch Configuration
 resource "aws_launch_template" "aws-launch-template" {
   name_prefix            = var.instance_data.name-prefix
   image_id               = var.instance_data.image-id
@@ -16,11 +16,5 @@ resource "aws_launch_template" "aws-launch-template" {
 
   vpc_security_group_ids = [aws_security_group.allow-sec1.id]
 
-  user_data = base64encode(
-    <<-EOF
-    #!/bin/bash
-    amazon-linux-extras install -y nginx1
-    systemctl enable nginx --now
-    EOF
-  )
+  user_data = filebase64("${path.module}/example.sh")
 }

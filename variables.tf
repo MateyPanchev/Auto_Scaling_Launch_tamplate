@@ -5,12 +5,18 @@ variable "subnet_type" {
   }
 }
 
-variable "cidr_ranges" {
+variable "subnet_cidr_ranges" {
   default = {
     public1  = "172.16.1.0/24"
     public2  = "172.16.3.0/24"
     private1 = "172.16.4.0/24"
     private2 = "172.16.5.0/24"
+  }
+}
+
+variable "route-gateway-IGW" {
+  default = {
+    cidr-block = "0.0.0.0/0"
   }
 }
 
@@ -23,7 +29,10 @@ variable "instance_data" {
 }
 
 variable "vpc_cidr_block" {
-  default = "172.16.0.0/16"
+  default = {
+    cidr-range = "172.16.0.0/16"
+    Name = "VPC"
+  }
 }
 
 variable "availability_zone" {
@@ -37,8 +46,8 @@ variable "auto-scaling-group-name" {
   default = "aws-autoscaling-group"
 }
 
-variable "project" {
-  type        = string
-  description = "Project name for resource tagging"
-  default     = "MP"
+variable "ssm-mgmt-attachment" {
+  default = {
+    policy-arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+  }
 }
