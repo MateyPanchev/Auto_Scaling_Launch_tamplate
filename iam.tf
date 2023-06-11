@@ -1,3 +1,4 @@
+#Create a policy that runs EC2
 resource "aws_iam_role" "aws-iam-role-ssm" {
   name = "ssm-mgmt"
   assume_role_policy = jsonencode({
@@ -17,14 +18,15 @@ resource "aws_iam_role" "aws-iam-role-ssm" {
   }
 }
 
-
+#SSM attachment
 resource "aws_iam_role_policy_attachment" "ssm-mgmt-attachment" {
   role       = aws_iam_role.aws-iam-role-ssm.id
-  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+  policy_arn = var.ssm-mgmt-attachment.policy-arn
 }
 
+#Create instance profile to pass role information to an EC2 instance
 resource "aws_iam_instance_profile" "iam-instance-profile" {
-  name = "instance-profile"
+  name = "Instance-profile"
   role = aws_iam_role.aws-iam-role-ssm.name
   tags = {
     name = "profile"
