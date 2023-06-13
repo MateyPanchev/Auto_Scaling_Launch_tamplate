@@ -5,9 +5,9 @@ resource "aws_cloudwatch_metric_alarm" "aws-cloudwatch-metric-alarm-up" {
   evaluation_periods  = 1
   metric_name         = "CPUUtilization"
   namespace           = "AWS/EC2"
-  period              = 120
+  period              = 120 # seconds
   statistic           = "Average"
-  threshold           = 80
+  threshold           = 80 # percent
   alarm_description   = "This metric monitors ec2 cpu utilization"
   alarm_actions = [
     aws_autoscaling_policy.aws-autoscaling-policy.arn
