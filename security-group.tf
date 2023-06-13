@@ -1,6 +1,6 @@
 # Create a Security Group
 resource "aws_security_group" "allow-http" {
-  name        = "allow_http"
+  name        = "Allow_http"
   description = "Allow HTTP inbound traffic"
   vpc_id      = aws_vpc.aws-vpc.id
 
@@ -34,7 +34,7 @@ resource "aws_security_group" "allow-sec1" {
     description     = "Traffic from http_sec_group"
     from_port       = 80
     to_port         = 80
-    protocol        = "TCP"
+    protocol        = "tcp"
     security_groups = [aws_security_group.allow-http.id]
   }
 
