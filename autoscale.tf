@@ -1,4 +1,4 @@
-# Create a ASG ----------------------------------------------------------------
+# Create a ASG
 resource "aws_autoscaling_group" "aws-autoscaling-group" {
   desired_capacity    = 2
   max_size            = 4
@@ -16,8 +16,7 @@ resource "aws_autoscaling_group" "aws-autoscaling-group" {
   }
 }
 
-# Create Auto Scale Policy ----------------------------------------------------
-
+# Create Auto Scale Policy
 resource "aws_autoscaling_policy" "aws-autoscaling-policy" {
   name                   = "Auto-scaling-policy"
   cooldown               = 60
